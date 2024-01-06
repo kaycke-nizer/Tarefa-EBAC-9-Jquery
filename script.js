@@ -3,12 +3,24 @@ const botao = document.getElementById('botao');
 
 var campo_escrever;
 
-botao.addEventListener('click', adicionar)
-
-function adicionar(e) {
+$('#botao').click(function(e) {
     e.preventDefault();
 
-    campo_escrever = document.getElementById('campo_escrever').value;
+    const campo_escrever = $('#campo_escrever').val();
 
-    lista_tarefas.innerHTML += `<li>${campo_escrever}</li>`;
-}
+    const nova_nota = $(`
+        <li class='nota'>
+            ${campo_escrever}
+        </li>
+        `);
+
+    $(nova_nota).appendTo('ol');
+    $('#campo_escrever').val('');  
+
+
+})
+
+$('#lista_de_tarefas').on('click', '.nota', function(){
+    $(this).toggleClass('completa');
+
+});
